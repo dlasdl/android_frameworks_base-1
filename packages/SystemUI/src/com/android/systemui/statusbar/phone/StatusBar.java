@@ -1385,6 +1385,7 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
 
         // receive broadcasts
+
         registerBroadcastReceiver();
 
         IntentFilter demoFilter = new IntentFilter();
@@ -3003,6 +3004,10 @@ public class StatusBar extends SystemUI implements DemoMode,
             else if (Utils.ACTION_DISMISS_KEYGUARD.equals(action)) {
                 if (intent.hasExtra(Utils.DISMISS_KEYGUARD_EXTRA_INTENT)) {
                     Intent launchIntent = (Intent) intent.getParcelableExtra(Utils.DISMISS_KEYGUARD_EXTRA_INTENT);
+
+            else if ("com.android.systemui.ACTION_DISMISS_KEYGUARD".equals(action)) {
+                if (intent.hasExtra("launch")) {
+                    Intent launchIntent = (Intent) intent.getParcelableExtra("launch");
                     startActivityDismissingKeyguard(launchIntent, true, true);
                 }
             }
