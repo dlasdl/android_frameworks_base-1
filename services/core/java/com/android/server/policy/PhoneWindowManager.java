@@ -2122,7 +2122,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                         AlternativeDeviceKeyHandlerLibs[i], getClass().getClassLoader());
                 Class<?> klass = loader.loadClass(AlternativeDeviceKeyHandlerClasses[i]);
                 Constructor<?> constructor = klass.getConstructor(Context.class);
-                mDeviceKeyHandlers.add((DeviceKeyHandler) constructor.newInstance(mContext));
+                mAlternativeDeviceKeyHandlers.add((AlternativeDeviceKeyHandler) constructor.newInstance(mContext));
             } catch (Exception e) {
                 Slog.w(TAG, "Could not instantiate device key handler "
                         + AlternativeDeviceKeyHandlerLibs[i] + " from class "
@@ -2130,7 +2130,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             }
         }
         if (DEBUG_INPUT) {
-            Slog.d(TAG, "" + mDeviceKeyHandlers.size() + " device key handlers loaded");
+            Slog.d(TAG, "" + mAlternativeDeviceKeyHandlers.size() + " device key handlers loaded");
         }
 
         String deviceKeyHandlerLib = mContext.getResources().getString(
